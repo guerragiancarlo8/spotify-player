@@ -8,6 +8,39 @@ window.onload = function(){//index.js goes here
 		console.debug('Current time: ' + current);
 	}
 
+	function fill_modal(information){
+
+		$("#name").text(information['tracks']['items'][0]['artists'][0]['name'])
+
+		//we make a request to retrieve the artist information
+
+		$.ajax({
+
+			url: information['tracks']['items'][0]['artists'][0]['href'],
+			success: function(response){
+
+				console.log(response)
+				$("#name").text(response['name'])
+
+				/*
+				//This is in case artist has genres.
+				for(var i=0;i<response['genres'].length; i++){
+
+					$("#genres").append('<li>'+response['genres'][i])
+				}
+				*/
+
+				//iterate through artist object's images array to display them in modal
+				$("#images").append('<li> <img src='+"'"+response['images'][0]['url']+"'"+' style="width:200px; height:200px;"></li>')
+				
+
+				$("#popularity").text(response['popularity'])
+
+			}
+
+		})
+	}
+
 	var searchSong = function(query){
 
 		$.ajax({
@@ -20,8 +53,9 @@ window.onload = function(){//index.js goes here
 			},
 			success:function(response){
 
-				console.log(response)
+				//console.log(response)
 				//track name
+				fill_modal(response)
 				$('.title').text(response['tracks']['items'][0]['name'])
 				//artist name
 				$('.author').text(response['tracks']['items'][0]['artists'][0]['name'])
@@ -57,6 +91,11 @@ window.onload = function(){//index.js goes here
 
 		$('progress').attr("value",$('audio').prop('currentTime'))
 
+	})
+
+	$('#display-artist').on('click',function(){
+
+		$('.js-modal').modal("show");
 	})
 
 }

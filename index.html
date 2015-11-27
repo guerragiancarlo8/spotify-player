@@ -1,9 +1,12 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<script src="index.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script src="index.js"></script>
+	
 </head>
 <body>
 	<div id="container">
@@ -23,7 +26,7 @@
 
 		<div class="metadata">
 		  <p class="title">Hunger of The Pine</p>
-		  <p class="author">alt-J</p>
+		  <button id = "display-artist" data-artist=""><p class="author">alt-J</p></button>
 
 		  <div class="seekbar">
 		    <progress value="5" max="30"></progress>
@@ -36,6 +39,32 @@
 
 		<audio src="https://p.scdn.co/mp3-preview/8e9c5ffdc38e91659bfe8b6bd44650dfc25a3d31"></audio>
 	</div>
+
+	<div class="modal fade js-modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<div class="modal-header">
+				<!--close button -->
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span>&times;</span>
+					</button>
+
+
+					<h2>
+						<p id="name"></p>
+						<p id="popularity"></p>
+					</h2>
+				</div>
+
+				<div class="modal-body">
+					<ul id="images"></ul>
+				</div>
+
+			</div><!-- /modal content -->
+		</div><!-- modal dialog -->
+	</div><!-- modal -->
+
 
 </body>
 </html>
