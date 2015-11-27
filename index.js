@@ -10,9 +10,8 @@ window.onload = function(){//index.js goes here
 
 	function fill_modal(information){
 
-		$("#name").text(information['tracks']['items'][0]['artists'][0]['name'])
-
-		//we make a request to retrieve the artist information
+		//remove any images from any previous fill_modal()s
+		$("li").remove()
 
 		$.ajax({
 
@@ -22,14 +21,7 @@ window.onload = function(){//index.js goes here
 				console.log(response)
 				$("#name").text(response['name'])
 
-				/*
-				//This is in case artist has genres.
-				for(var i=0;i<response['genres'].length; i++){
-
-					$("#genres").append('<li>'+response['genres'][i])
-				}
-				*/
-
+				
 				//iterate through artist object's images array to display them in modal
 				$("#images").append('<li> <img src='+"'"+response['images'][0]['url']+"'"+' style="width:200px; height:200px;"></li>')
 				
@@ -73,6 +65,9 @@ window.onload = function(){//index.js goes here
 		e.preventDefault();
 		searchSong(document.getElementById('query').value);
 	},false);
+
+	//fill the modal with the initial artist when page loads
+	searchSong($('.title').text())
 
 	$('.btn-play').on('click',function(){
 
