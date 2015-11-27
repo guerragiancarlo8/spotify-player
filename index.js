@@ -2,6 +2,12 @@ window.onload = function(){//index.js goes here
 	var id
 	var htmlElement = document.getElementById('container')
 
+	function printTime(){
+
+		var current = $('audio').prop('currentTime')
+		console.debug('Current time: ' + current);
+	}
+
 	var searchSong = function(query){
 
 		$.ajax({
@@ -45,6 +51,12 @@ window.onload = function(){//index.js goes here
 			$('.btn-play').addClass('disabled').removeClass('playing')
 			$('audio').trigger('pause');
 		}
+	})
+
+	$('audio').on('timeupdate',function(){
+
+		$('progress').attr("value",$('audio').prop('currentTime'))
+
 	})
 
 }
